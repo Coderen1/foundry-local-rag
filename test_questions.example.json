@@ -1,0 +1,22 @@
+[
+  {
+    "question": "Bu dersin final sinavinin degerlendirmedeki agirligi yuzde kactir?",
+    "expect_answerable": true,
+    "expected_keywords": ["30"]
+  },
+  {
+    "question": "Lab deneyleri kacar kisilik gruplarla yapiliyor?",
+    "expect_answerable": true,
+    "expected_keywords": ["3"]
+  },
+  {
+    "question": "Dersi veren hocanin en sevdigi renk nedir?",
+    "expect_answerable": false,
+    "expected_keywords": []
+  },
+  {
+    "question": "Bu sirket 2030 yilinda hangi borsaya kote olmayi planliyor?",
+    "expect_answerable": false,
+    "expected_keywords": []
+  }
+]

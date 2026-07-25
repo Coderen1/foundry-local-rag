@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Proje verisi (yerel, kisiye ozel - commit'lenmesin)
+rag_store.db
+docs/*
+!docs/.gitkeep
+test_questions.json
+
+# macOS
+.DS_Store
+
+# Claude Code
+.claude/

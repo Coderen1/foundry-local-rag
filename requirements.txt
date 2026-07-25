@@ -1,0 +1,6 @@
+foundry-local-sdk>=0.3.0,<1.0.0
+openai>=1.30.0
+streamlit>=1.32.0
+numpy>=1.26.0
+pypdf>=4.0.0
+sentence-transformers>=2.7.0
