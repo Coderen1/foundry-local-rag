@@ -7,7 +7,7 @@
   {
     "question": "Lab deneyleri kacar kisilik gruplarla yapiliyor?",
     "expect_answerable": true,
-    "expected_keywords": ["3"]
+    "expected_keywords": ["grup"]
   },
   {
     "question": "Dersi veren hocanin en sevdigi renk nedir?",

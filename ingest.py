@@ -156,6 +156,42 @@ def get_chunk_count(db_path: str = DB_PATH) -> int:
         conn.close()
 
 
+def get_document_sources(db_path: str = DB_PATH) -> list:
+    """Veritabaninda kayitli benzersiz dokuman (source) adlarini alfabetik dondurur."""
+    if not Path(db_path).exists():
+        return []
+    conn = sqlite3.connect(db_path)
+    try:
+        cursor = conn.execute("SELECT DISTINCT source FROM chunks ORDER BY source")
+        return [row[0] for row in cursor.fetchall()]
+    except sqlite3.OperationalError:
+        return []
+    finally:
+        conn.close()
+
+
+def delete_document(source: str, db_path: str = DB_PATH) -> int:
+    """Verilen kaynak (dosya adi) ile eslesen tum parcalari veritabanindan siler.
+
+    Not: Yalnizca veritabani kayitlarini siler; docs/ klasorundeki asil dosyaya
+    dokunmaz (tekrar 'Ice Aktar' calistirilirsa dosya hala oradaysa yeniden eklenir).
+    Silinen parca sayisini dondurur.
+    """
+    try:
+        conn = sqlite3.connect(db_path)
+    except sqlite3.OperationalError as exc:
+        raise RuntimeError(f"Veritabanina baglanilamadi: {exc}") from exc
+
+    try:
+        cursor = conn.execute("DELETE FROM chunks WHERE source = ?", (source,))
+        conn.commit()
+        return cursor.rowcount
+    except sqlite3.OperationalError as exc:
+        raise RuntimeError(f"'{source}' silinirken veritabani hatasi olustu: {exc}") from exc
+    finally:
+        conn.close()
+
+
 # --------------------------------------------------------------------------
 # Dokuman okuma
 # --------------------------------------------------------------------------
